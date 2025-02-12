@@ -29,25 +29,29 @@ const guardians = {
 function generatePlaylist(guardians, songs) {
     // Use the map() function to create playlists for each Guardian, displaying the title and artist of each song.
     // Your code here
-
-    const GuardianPlaylist = Object.keys(guardians).map((guardian) => {
+    
+    const guardianPlaylist = Object.keys(guardians).map((guardian) => {
         const playlist = songs.filter((song) => song.genre === guardians[guardian]);
-        return `${guardian}'s Playlist:\n${playlist.map((song) => `${song.title} by ${song.artist}`).join("\n")}`;
-    }); 
+        let playlistString = `${guardian}'s Playlist:\n`;
+        playlist.forEach((song) => {
+            playlistString += `Title: ${song.title} By: ${song.artist}("\n")`;
 
-   /* const GuardianPlaylist = Object.keys(guardians).map(guardian => {
-        const genre = guardians[guardian];
-        const playlist = songs.filter(song => song.genre === genre);
-        const titles = playlist.map(song => song.title).join(", ");
-        const artists = playlist.map(song => song.artist).join(", ");
-        const genres = playlist.map(song => song.genre).join(", ");
-        return `${guardian}'s Playlist: Titles: ${titles}, By: ${artists}`;
-    });*/
-    return GuardianPlaylist;
+        });
+        return playlistString;
+        
+    });
+
+    return guardianPlaylist;
 }
 console.log(generatePlaylist(guardians, songs));
 //Object.keys(guardians)
 
 // Call generatePlaylist and display the playlists for each Guardian
 generatePlaylist(guardians, songs);
-
+// Your code here
+const playlist =  document.getElementById("playlists");
+generatePlaylist(guardians, songs).forEach((guardian) => {
+    const playlistDiv = document.createElement("div");
+    playlistDiv.textContent = generatePlaylist(guardians, songs);
+    playlist.appendChild(playlistDiv);
+});
