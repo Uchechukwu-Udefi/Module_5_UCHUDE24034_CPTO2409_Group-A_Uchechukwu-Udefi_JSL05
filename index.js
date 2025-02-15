@@ -50,6 +50,7 @@ function generatePlaylist(guardians, songs) {
 // Call generatePlaylist and display the playlists for each Guardian
 generatePlaylist(guardians, songs);
 
+// Function to display playlists for each Guardian
 function displayPlaylists(guardians, songs) {
     const playlistContainer = document.getElementById("playlists");
     const playlists = generatePlaylist(guardians, songs);
@@ -60,5 +61,7 @@ function displayPlaylists(guardians, songs) {
         playlistContainer.appendChild(playlistDiv);
     });
 }
+
+// Call displayPlaylists 
 displayPlaylists(guardians, songs);
 
