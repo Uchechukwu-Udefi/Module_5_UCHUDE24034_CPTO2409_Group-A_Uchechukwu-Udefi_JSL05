@@ -12,6 +12,7 @@ const songs = [
     { title: "I'm Not in Love", artist: "10cc", genre: "Pop" },
     { title: "Fooled Around and Fell in Love", artist: "Elvin Bishop", genre: "Rock" },
     // Feel free to add even more songs
+    { title: "Father and Son", artist: "Cat Stevens", genre: "R&B" },
 
 ];
 
@@ -24,6 +25,7 @@ const guardians = {
     "Drax": "R&B",
     "Rocket": "Pop",
     "Groot": "Rock",
+    "Mantis": "R&B"
 };
 
 // Function to generate playlist based on preferred genre
@@ -34,25 +36,15 @@ function generatePlaylist(guardians, songs) {
     return Object.keys(guardians).map((guardian) => {
         const genre = guardians[guardian];
         const playlist = songs.filter((song) => song.genre === genre);
-
-        const playlistString = playlist.map((song) => `<div class="song-title">${song.title}</div> by: ${song.artist}`)
-        .join("");
-        return `${guardian}'s Playlist:<br>${playlistString}`;
-    });
-    
-   /* return Object.keys(guardians).map((guardian) => {
-        const playlist = songs.filter((song) => song.genre === guardians[guardian]);
-        let playlistString = `${guardian}'s Playlist:<br>`;
-
+        let playlistString = `<h2>${guardian}'s Playlist:</h2>`;
         playlist.forEach((song) => {
-            let titleString = `<div class="song-title">${song.title}</div>`;
-            playlistString += `${titleString} by: ${song.artist}<br>`;
+            playlistString += `<div class="song-title">${song.title}</div> by: ${song.artist}<br>`;
         });
         return playlistString;
-    });*/
+    });
+
 }
 
-console.log(generatePlaylist(guardians, songs));
 //Object.keys(guardians)
 
 // Call generatePlaylist and display the playlists for each Guardian
@@ -61,7 +53,6 @@ generatePlaylist(guardians, songs);
 function displayPlaylists(guardians, songs) {
     const playlistContainer = document.getElementById("playlists");
     const playlists = generatePlaylist(guardians, songs);
-    console.log(playlists);
     playlists.forEach((playlist) => {
         const playlistDiv = document.createElement("div");
         playlistDiv.classList.add("playlist");
@@ -70,3 +61,4 @@ function displayPlaylists(guardians, songs) {
     });
 }
 displayPlaylists(guardians, songs);
+
